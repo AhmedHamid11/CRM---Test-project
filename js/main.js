@@ -1,7 +1,8 @@
 
 //Main Arrays and Ints
-var arrayOfContact = [];
-var arrayOfHashtags = [];
+var mainTweet = "";
+var hashtags = [];
+var arrayOfRecords = [];
 var i = 0;
 var record = function(id, tweet, hashtag){
 			this.id = 0;
@@ -26,15 +27,15 @@ var mainActions = function() {
 //Pulls text from text field and adds to array
 var pullText = function(){
 
-	arrayOfContact.push(" " + document.getElementById("inputField").value);
+	mainTweet = document.getElementById("inputField").value;
+	arrayOfRecords.push( {id: i, tweet: mainTweet, hashtag: hashtags} ) ;
 }
 
 
 //Displays the next item in line including hashtags
 var displayNext = function(){
 	
-	document.getElementById("demo").innerHTML += "<br>" + arrayOfContact[i];
-	i++;
+	document.getElementById("demo").innerHTML += "<br>" + mainTweet;
 }
 
 //Clear the field when submit is pressed
