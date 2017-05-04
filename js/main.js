@@ -3,13 +3,7 @@
 var mainTweet = "";
 var hashtags = [];
 var arrayOfRecords = [];
-var i = 0;
-var record = function(id, tweet, hashtag){
-			this.id = 0;
-			this.tweet = "";
-			this.hashtag = "";
-
-}
+var id = 0;
 
 
 
@@ -28,7 +22,7 @@ var mainActions = function() {
 var pullText = function(){
 
 	mainTweet = document.getElementById("inputField").value;
-	arrayOfRecords.push( {id: i, tweet: mainTweet, hashtag: hashtags} ) ;
+	arrayOfRecords.push( {id: id, tweet: mainTweet, hashtags: hashtags} ) ;
 }
 
 
@@ -47,16 +41,19 @@ var clearField = function (){
 //Parse entry for hashtags
 var hashtagParse = function() {
 
-	var parse = document.getElementById("inputField").value;
+	var parse = arrayOfRecords[id].tweet;
 	var parseArray = parse.split(" ");
 		
 		for(j = 0; j < parseArray.length; j++){
 			
 			if (parseArray[j][0] == "#"){
 
-				arrayOfHashtags.push(parseArray[j]);
-				document.getElementById("hashTags").innerHTML += "<br>" + arrayOfHashtags[arrayOfHashtags.length - 1];
+				hashtags.push(parseArray[j]);
+				document.getElementById("hashTags").innerHTML += "<br>" + hashtags[hashtags.length - 1];
 			}
 
-		}	
+		}
+		//need to add if else incase other hashtags already exist
+		arrayOfRecords[id].hashtags = hashtags
+		id++;
 }
