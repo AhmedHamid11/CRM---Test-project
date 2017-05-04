@@ -1,7 +1,6 @@
 
 //Main Arrays and Ints
 var mainTweet = "";
-var hashtags = [];
 var arrayOfRecords = [];
 var id = 0;
 
@@ -22,7 +21,7 @@ var mainActions = function() {
 var pullText = function(){
 
 	mainTweet = document.getElementById("inputField").value;
-	arrayOfRecords.push( {id: id, tweet: mainTweet, hashtags: hashtags} ) ;
+	arrayOfRecords.push( {id: id, tweet: mainTweet} ) ;
 }
 
 
@@ -43,6 +42,7 @@ var hashtagParse = function() {
 
 	var parse = arrayOfRecords[id].tweet;
 	var parseArray = parse.split(" ");
+	var hashtags = [];
 		
 		for(j = 0; j < parseArray.length; j++){
 			
@@ -54,6 +54,8 @@ var hashtagParse = function() {
 
 		}
 		//need to add if else incase other hashtags already exist
-		arrayOfRecords[id].hashtags = hashtags
+		//bug, all protos have all hashtags
+
+		if (hashtags.length > 0 ){arrayOfRecords[id].hashtags = hashtags;}
 		id++;
 }
