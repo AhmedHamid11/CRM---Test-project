@@ -1,8 +1,10 @@
 
 //Main Arrays and Ints for inputtings notes
-var mainTweet = "";
+var newShortNote = "";
 var arrayOfRecords = [];
-var id = 0;
+var id = 2;
+var shortNotes = TAFFY([{id: 1, shortNote: "This is the first note in your system", hashtags: ["#first", "#microcrm"]}]);
+
 
 //Vars for adding customers
 var arrayOfCustomer = [];
@@ -17,6 +19,8 @@ var mainActions = function() {
 	hashtagParse();
 	displayNext();
 	clearField();
+	//showHashtags();
+	incrementId();
 }
 
 
@@ -24,15 +28,17 @@ var mainActions = function() {
 //Pulls text from text field and adds to array
 var pullText = function(){
 
-	mainTweet = document.getElementById("inputField").value;
-	arrayOfRecords.push( {id: id, tweet: mainTweet} ) ;
+	newShortNote = document.getElementById("inputField").value;
+	shortNotes.insert({id: id, shortNote: newShortNote});
+
+
 }
 
 
 //Displays the next item in line including hashtags
 var displayNext = function(){
 	
-	document.getElementById("demo").innerHTML += "<br>" + mainTweet;
+	document.getElementById("demo").innerHTML += "<br>" + newShortNote;
 }
 
 //Clear the field when submit is pressed
@@ -41,27 +47,43 @@ var clearField = function (){
 }
 
 
-//Parse entry for hashtags
+//Parse entry for hashtags and stores
 var hashtagParse = function() {
 
-	var parse = arrayOfRecords[id].tweet;
+	var parse = newShortNote;
 	var parseArray = parse.split(" ");
-	var hashtags = [];
+	//var hashtags = [];
 		
 		for(j = 0; j < parseArray.length; j++){
 			
 			if (parseArray[j][0] == "#"){
 
-				hashtags.push(parseArray[j]);
-				document.getElementById("hashTags").innerHTML += "<br>" + hashtags[hashtags.length - 1];
+				shortNotes({id: id}).update({hashtags:[parseArray[j]]});
+
+				//displays the hashtag without pulling info from the database
+				document.getElementById("hashTags").innerHTML += "<br>" + parseArray[j];
 			}
 
 		}
 		//need to add if else incase other hashtags already exist
 
 		if (hashtags.length > 0 ){arrayOfRecords[id].hashtags = hashtags;}
-		id++;
+
 }
+
+//displays hashtags on screen - Turned off right now
+var showHashtags = function() {
+
+	var showHash = shortNotes().get();
+	var addNewHash = showHash[id].hashtags[0];
+	document.getElementById("hashTags").innerHTML += "<br>" + addNewHash;
+}
+
+
+var incrementId = function() {id++;}
+
+
+
 
 
 
@@ -91,10 +113,9 @@ var showCustomerInfo = function (){
 	document.getElementById("showfirstname").innerHTML += arrayOfCustomer[0].firstName;
 	document.getElementById("showlastname").innerHTML += arrayOfCustomer[0].lastName;
 	document.getElementById("showhashtags").innerHTML += arrayOfCustomer[0].hashtags;
-	searchTweets();
 }
 
-//need to build in search
+//Searches all tweets for related hashtags then displays them.
 var searchTweets = function (){
 
 	for(j = 0; j < arrayOfRecords.length; j++){
