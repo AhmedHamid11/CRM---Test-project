@@ -2,14 +2,35 @@
 <html>
 <head>
 <script type="text/javascript" src="js/main.js"></script>
+<script src="js/taffy.js"></script>
 	<title>Micro CRM</title>
 </head>
 <body>
 	<textarea id="inputField" rows="4" cols="50">
 	</textarea>
 	<button onclick="mainActions()">Submit</button>
+	<a href="addcustomer.html">Add new Customer</a>
+	
 	<p id="demo">Entry</p>
 	<p id="hashTags">Categories</p>
+<br><br>
+	<form>
+  First name:<br>
+  <input id="firstname" type="text" name="firstname" value="Cali">
+  <br>
+  Last name:<br>
+  <input id="lastname" type="text" name="lastname" value="Rob">
+   <br>
+  Hashtag to associate:<br>
+  <input id="hashtags" type="text" name="hashtags" value="#calirob">
+  <br><br>
+  <a onclick="addCustomer()" href="#">Add Customer</a>
+  <br><br>
+	<p id="showfirstname">FirstName: </p>
+	<p id="showlastname">LastName: </p>
+	<p id="showhashtags">Associated Hashtag: </p>
+	<p id="showtweets">Associated Tweets: </p>
+	<a onclick="searchTweets()" href="#">Search Notes</a>
 
 </body>
 </html>

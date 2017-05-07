@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script type="text/javascript" src="js/main.js"></script>
+	<title>Add new customer - MicroCRM</title>
+</head>
+<body>
+<form action="/action_page.php">
+  First name:<br>
+  <input id="firstname" type="text" name="firstname" value="Cali">
+  <br>
+  Last name:<br>
+  <input id="lastname" type="text" name="lastname" value="Rob">
+   <br>
+  Hashtag to associate:<br>
+  <input id="hashtags" type="text" name="hashtags" value="#calirob">
+  <br><br>
+  <a onclick="addCustomer()" href="#">Add Customer</a>
+<p id="showfirstname">FirstName: </p>
+<p id="showlastname"></p>
+<p id="showhashtags"></p>
+<p id="showtweets"></p>
+</form> 
+</body>
+</html>

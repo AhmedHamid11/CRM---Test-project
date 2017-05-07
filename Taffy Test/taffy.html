@@ -1,0 +1,19 @@
+<html>
+	<head>
+		<script src="js/taffy.js"></script>
+
+		<script>
+
+		var cities = TAFFY([{name:"New York",state:"WA"},{name:"Las Vegas",state:"NV"},{name:"Boston",state:"MA"}]);
+	
+		cities.insert({name:"Portland",state:"OR"});
+
+		cities({name:"New York"}).update({state:"NY"});
+
+		alert(cities().order("name").first().name)
+		</script>
+	</head>
+	<body>
+	</body>
+				
+</html>
